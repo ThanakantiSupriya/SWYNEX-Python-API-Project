@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Public API Explorer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2457c5;
+        }
+
+        input {
+            padding: 12px;
+            width: 60%;
+            max-width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            background-color: #2457c5;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #163d91;
+        }
+
+        .result {
+            background-color: #eef4ff;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .error {
+            color: #c62828;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Public API Explorer</h1>
+
+        <p>Explore sample posts using a public API.</p>
+
+        <form method="POST">
+            <input
+                type="number"
+                name="post_id"
+                placeholder="Enter post ID (1-100)"
+                min="1"
+                max="100"
+                required
+            >
+
+            <button type="submit">Search</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if post %}
+            <div class="result">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.body }}</p>
+                <p><strong>Post ID:</strong> {{ post.id }}</p>
+                <p><strong>User ID:</strong> {{ post.userId }}</p>
+            </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
